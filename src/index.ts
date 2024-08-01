@@ -1,9 +1,27 @@
-function component() {
-    const element = document.createElement('div');
+import { from, Observable } from "rxjs";
 
-    element.innerHTML = 'Teste';
+let numbers = [1, 5, 10]
+let source = from(numbers)
 
-    return element;
+let sourceInstance = new Observable(subscriber => {
+    for (let n of numbers) {
+        if (n > 5) 
+            subscriber.error('Aconteceu um erro')
+            subscriber.next(n)
+        
+    }
+    subscriber.complete()
+})
+
+const myObserver = {
+    next: (x: number) => console.log(x),
+    error: (e: Error) => console.log(e),
+    complete: () => console.log('Complete')
 }
 
-document.body.appendChild(component());
+function component() {
+    source.subscribe(myObserver)
+    sourceInstance.subscribe(myObserver)
+}
+
+component()

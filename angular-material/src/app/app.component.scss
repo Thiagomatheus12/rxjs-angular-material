@@ -1,0 +1,15 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+mat-sidenav {
+  width: 250px;
+  border: 1px solid black;
+}
+
+mat-sidenav-container {
+  border: 3px dashed orange;
+}
+mat-sidenav-content {
+  border: 2px solid red;
+}
